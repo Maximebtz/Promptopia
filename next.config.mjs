@@ -7,12 +7,21 @@ const nextConfig = {
     domains: ['lh3.googleusercontent.com'],
   },
   webpack(config) {
+    // Ajouter topLevelAwait aux expérimentations webpack
     config.experiments = {
       ...config.experiments,
       topLevelAwait: true,
-    }
-    return config
-  }
+    };
+
+    return config;
+  },
+  // Ajouter les options de chargement de PostCSS
+  postcssLoaderOptions: {
+    implementation: require('postcss'),
+    postcssOptions: {
+      plugins: ['autoprefixer'],
+    },
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
