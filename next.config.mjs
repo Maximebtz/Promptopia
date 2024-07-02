@@ -1,6 +1,8 @@
-import { withExperiments } from 'next/dist/next-server/server/config-shared';
+// next.config.js
 
-const nextConfig = {
+const withExperiments = require('next/dist/next-server/server/config-shared').withExperiments;
+
+module.exports = withExperiments({
   experimental: {
     serverComponentsExternalPackages: ["mongoose"],
   },
@@ -8,7 +10,6 @@ const nextConfig = {
     domains: ['lh3.googleusercontent.com'],
   },
   webpack(config) {
-    // Ajouter topLevelAwait aux options expérimentales de webpack
     config.experiments = {
       ...config.experiments,
       topLevelAwait: true,
@@ -16,13 +17,10 @@ const nextConfig = {
 
     return config;
   },
-  // Ajouter les options de chargement de PostCSS
   postcssLoaderOptions: {
     implementation: require('postcss'),
     postcssOptions: {
       plugins: ['autoprefixer'],
     },
   },
-};
-
-export default withExperiments(nextConfig);
+});
