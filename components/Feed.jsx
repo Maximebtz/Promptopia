@@ -51,8 +51,6 @@ const Feed = () => {
     clearTimeout(searchTimeout);
     setSearchText(e.target.value);
 
-    console.log(e.target.value)
-
     // debounce method
     setSearchTimeout(
       setTimeout(() => {
