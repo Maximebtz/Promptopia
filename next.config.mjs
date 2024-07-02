@@ -1,9 +1,7 @@
-// next.config.js
-
-const withExperiments = require('next/dist/next-server/server/config-shared').withExperiments;
-
-module.exports = withExperiments({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   experimental: {
+    appDir: true,
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
@@ -13,14 +11,9 @@ module.exports = withExperiments({
     config.experiments = {
       ...config.experiments,
       topLevelAwait: true,
-    };
+    }
+    return config
+  }
+};
 
-    return config;
-  },
-  postcssLoaderOptions: {
-    implementation: require('postcss'),
-    postcssOptions: {
-      plugins: ['autoprefixer'],
-    },
-  },
-});
+export default nextConfig;
