@@ -1,4 +1,5 @@
-/** @type {import('next').NextConfig} */
+import { withExperiments } from 'next/dist/next-server/server/config-shared';
+
 const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ["mongoose"],
@@ -7,7 +8,7 @@ const nextConfig = {
     domains: ['lh3.googleusercontent.com'],
   },
   webpack(config) {
-    // Ajouter topLevelAwait aux expérimentations webpack
+    // Ajouter topLevelAwait aux options expérimentales de webpack
     config.experiments = {
       ...config.experiments,
       topLevelAwait: true,
@@ -24,4 +25,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default withExperiments(nextConfig);
